@@ -1,28 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import photos from "./photos.json";
+import "./App.css";
 
 class App extends Component {
+  state = {
+    photos: photos,
+    selectedImageIndex: null
+  };
+
+  handleClick = index => {
+    this.setState({ selectedImageIndex: index });
+  };
   render() {
+    const { photos, selectedImageIndex } = this.state;
+    console.log("selected image is ", selectedImageIndex);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {photos.map((img, index) => {
+          return (
+            <img
+              key={img}
+              src={img}
+              style={
+                index !== selectedImageIndex
+                  ? {
+                      height: 300,
+                      width: 300
+                    }
+                  : {
+                      border: "3px solid red",
+                      height: 300,
+                      width: 300
+                    }
+              }
+              alt="some bulshit"
+              onClick={() => this.handleClick(index)}
+            />
+          );
+        })}
       </div>
     );
   }
 }
-
 export default App;
