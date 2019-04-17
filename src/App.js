@@ -13,6 +13,7 @@ class App extends Component {
   };
   render() {
     const { photos, selectedImageIndex } = this.state;
+    console.log("photos", photos);
     console.log("selected image is ", selectedImageIndex);
     return (
       <div className="App">
@@ -33,6 +34,7 @@ class App extends Component {
                       width: 300
                     }
               }
+              alt="some bulshit"
               onClick={() => this.handleClick(index)}
             />
           );
