@@ -33,7 +33,6 @@ class App extends Component {
                       width: 300
                     }
               }
-              alt="some bulshit"
               onClick={() => this.handleClick(index)}
             />
           );
