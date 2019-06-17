@@ -1,12 +1,19 @@
-# Stage 1
-FROM node:latest as react-build
-WORKDIR /app
-COPY . ./
-RUN yarn
-RUN yarn build
+# base image
+FROM node:12.2.0-alpine
 
-# Stage 2 - the production environment
-FROM nginx:alpine
-COPY --from=react-build /app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# set working directory
+RUN mkdir -p /app/client
+WORKDIR /app/client/
+
+
+# install and cache app dependencies
+COPY package*.json /app/client/
+
+RUN npm install
+
+COPY . /app/client/
+
+EXPOSE 3000
+
+# start app
+CMD ["npm", "start"]
