@@ -22,18 +22,6 @@ class App extends Component {
             <img
               key={img}
               src={img}
-              style={
-                index !== selectedImageIndex
-                  ? {
-                      height: 300,
-                      width: 300
-                    }
-                  : {
-                      border: "3px solid red",
-                      height: 300,
-                      width: 300
-                    }
-              }
               alt="some bulshit"
               onClick={() => this.handleClick(index)}
             />
